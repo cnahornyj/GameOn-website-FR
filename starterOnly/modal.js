@@ -32,7 +32,7 @@ function closeModal() {
 }
 
 // REGEX
-let checkString = /^[a-zA-Z]/;
+let checkString = /^[a-zA-Z]{2}/;
 let checkMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 // Fonctions de vérification des différents inputs saisis par l'utilisateur
