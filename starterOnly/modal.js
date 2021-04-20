@@ -14,7 +14,6 @@ const formData = document.querySelectorAll(".formData");
 const closeBtnModal = document.querySelector(".close");
 const form = document.forms["reserve"];
 
-
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -38,12 +37,13 @@ let checkMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-
 // Fonctions de vérification des différents inputs saisis par l'utilisateur
 
 //
-function validateFirstName(){
-let firstname = form.elements['firstname'];
-let error = document.getElementById("error-firstname");
+function validateFirstName() {
+  let firstname = form.elements["firstname"];
+  let error = document.getElementById("error-firstname");
   if (checkString.test(firstname.value) === false) {
     firstname.classList.add("input-error");
-    error.innerText = "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du prénom";
+    error.innerText =
+      "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du prénom";
     return false;
   } else {
     firstname.classList.remove("input-error");
@@ -54,12 +54,13 @@ let error = document.getElementById("error-firstname");
 }
 
 //
-function validateLastName(){
-let lastname = form.elements['lastname'];
-let error = document.getElementById("error-lastname");
+function validateLastName() {
+  let lastname = form.elements["lastname"];
+  let error = document.getElementById("error-lastname");
   if (checkString.test(lastname.value) === false) {
     lastname.classList.add("input-error");
-    error.innerText = "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du nom";
+    error.innerText =
+      "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du nom";
     return false;
   } else {
     lastname.classList.remove("input-error");
@@ -70,9 +71,9 @@ let error = document.getElementById("error-lastname");
 }
 
 //
-function validateEmail(){
-let email = form.elements['email'];
-let error = document.getElementById("error-mail");
+function validateEmail() {
+  let email = form.elements["email"];
+  let error = document.getElementById("error-mail");
   if (checkMail.test(email.value) === false) {
     email.classList.add("input-error");
     error.innerText = "Saississez un email valide";
@@ -85,33 +86,33 @@ let error = document.getElementById("error-mail");
   }
 }
 
-function validateDate(){
-let input = document.querySelector("input#birthdate");
-let birthdate = form.elements['birthdate'].value;
-// console.log(birthdate); input 23/01/2022 output 2022-01-23 
-let error = document.getElementById("error-date");
+function validateDate() {
+  let input = document.querySelector("input#birthdate");
+  let birthdate = form.elements["birthdate"].value;
+  // console.log(birthdate); input 23/01/2022 output 2022-01-23
+  let error = document.getElementById("error-date");
 
-// Création de l'objet de type date avec la date renseignée par l'utilisateur
-let UserDate = new Date(birthdate);
-// console.log(UserDate); Sun Jan 23 2022 01:00:00 GMT+0100 (heure normale d’Europe centrale)
+  // Création de l'objet de type date avec la date renseignée par l'utilisateur
+  let UserDate = new Date(birthdate);
+  // console.log(UserDate); Sun Jan 23 2022 01:00:00 GMT+0100 (heure normale d’Europe centrale)
 
-// La méthode getTime() retourne le nbr de millisecondes depuis le 01/01/1970
+  // La méthode getTime() retourne le nbr de millisecondes depuis le 01/01/1970
 
-let numberOfMsUserDate = UserDate.getTime();
-// console.log(numberOfMsUserDate);
+  let numberOfMsUserDate = UserDate.getTime();
+  // console.log(numberOfMsUserDate);
 
-// Création de l'objet de type date avec la date du jour
-let today = new Date(Date.now()); 
-// console.log(today); Mon Apr 19 2022 15:45:32 GMT+0100 (heure normale d’Europe centrale)
+  // Création de l'objet de type date avec la date du jour
+  let today = new Date(Date.now());
+  // console.log(today); Mon Apr 19 2022 15:45:32 GMT+0100 (heure normale d’Europe centrale)
 
-let numberOfMsToday  = today.getTime();
-// console.log(numberOfMsToday);
+  let numberOfMsToday = today.getTime();
+  // console.log(numberOfMsToday);
 
-// 18 années = 5,676e+11millisecondes
-/* Si le nbr de millisecondes depuis le 01/01/1970 de la date entrée par l'utilisateur est
+  // 18 années = 5,676e+11millisecondes
+  /* Si le nbr de millisecondes depuis le 01/01/1970 de la date entrée par l'utilisateur est
   supérieur au nbr de millisecondes depuis le 01/01/1970 de la date du jour alors message d'erreur */
 
-  if (numberOfMsUserDate > numberOfMsToday){
+  if (numberOfMsUserDate > numberOfMsToday) {
     input.classList.add("input-error");
     error.innerText = "Vous devez entrer votre date de naissance";
     return false;
@@ -126,52 +127,53 @@ let numberOfMsToday  = today.getTime();
 
 /* Fonction qui parcoure chaque input de type radio et vérifie si l'un a son 
 attribut checked === true */
-function validateCity(){
+function validateCity() {
   let cities = document.querySelectorAll("input[type=radio]");
   let error = document.getElementById("error-city");
-  for(i=0; i<cities.length; i++){
-		if(cities[i].checked){ 
+  for (i = 0; i < cities.length; i++) {
+    if (cities[i].checked) {
       error.innerText = "";
-			return true; // Si on a trouvé une valeur, inutile de continuer
-		}
-	}
-	// Si on arrive ici, c'est qu'aucune case n'est cochée alors message d'erreur
-	error.innerText = "Vous devez choisir une option";
-	return false;
+      return true; // Si on a trouvé une valeur, inutile de continuer
+    }
+  }
+  // Si on arrive ici, c'est qu'aucune case n'est cochée alors message d'erreur
+  error.innerText = "Vous devez choisir une option";
+  return false;
 }
 
 /* Fonction qui vérifie que le 1er input de type checkbox ait son attribut 
 checked === true */
-function validateTerms(){
+function validateTerms() {
   let terms = document.querySelector("input[type=checkbox]");
   let error = document.getElementById("error-terms");
-  if (terms.checked === true){
+  if (terms.checked === true) {
     error.innerText = "";
     return true;
   } else {
-    error.innerText = "Vous devez vérifier que vous acceptez les termes et conditions";
+    error.innerText =
+      "Vous devez vérifier que vous acceptez les termes et conditions";
     return false;
-  };
+  }
 }
 
 /* Fonction déclenchée au clic sur le btn submit du formulaire qui évalue que toutes les fonctions précédentes 
 return true si NON blocage de l'envoi du formulaire et si OUI alors le formulaire est envoyé et un message de 
 réussite est affiché */
-function validateForm(event){
-  if (validateFirstName() === false){
+function validateForm(event) {
+  if (validateFirstName() === false) {
     return false;
-  } else if (validateLastName() === false){
+  } else if (validateLastName() === false) {
     return false;
-  } else if (validateEmail() === false){
+  } else if (validateEmail() === false) {
     return false;
   } else if (validateDate() === false) {
     return false;
   } else if (validateCity() === false) {
     return false;
   } else if (validateTerms() === false) {
-    return false;    
+    return false;
   } else {
-    event.preventDefault()
+    event.preventDefault();
     form.remove();
     let modal = document.querySelector("div.modal-body");
     let message = document.createElement("p");
@@ -181,9 +183,7 @@ function validateForm(event){
     let btnCloseModal = document.createElement("button");
     btnCloseModal.classList.add("btn-submit");
     btnCloseModal.innerText = "Fermer";
-    btnCloseModal.addEventListener("click",closeModal);
+    btnCloseModal.addEventListener("click", closeModal);
     modal.appendChild(btnCloseModal);
   }
 }
-
-
