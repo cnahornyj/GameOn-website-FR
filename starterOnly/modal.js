@@ -157,7 +157,7 @@ function validateTerms(){
 /* Fonction déclenchée au clic sur le btn submit du formulaire qui évalue que toutes les fonctions précédentes 
 return true si NON blocage de l'envoi du formulaire et si OUI alors le formulaire est envoyé et un message de 
 réussite est affiché */
-function validateForm(){
+function validateForm(event){
   if (validateFirstName() === false){
     return false;
   } else if (validateLastName() === false){
@@ -171,6 +171,7 @@ function validateForm(){
   } else if (validateTerms() === false) {
     return false;    
   } else {
+    event.preventDefault()
     form.remove();
     let modal = document.querySelector("div.modal-body");
     let message = document.createElement("p");

@@ -54,7 +54,7 @@
           <span class="close"></span>
           <div class="modal-body">
             <form id="reserve" action="index.html"
-              method="get" onsubmit="return validateForm();">
+              method="get" onsubmit="return validateForm(event);">
               <div class="formData">
                 <label for="firstname">Prénom</label><br>
                 <input type="text" id="firstname" name="firstname" minlength="2" onchange="validateFirstName()" required/>
