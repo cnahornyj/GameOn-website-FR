@@ -71,7 +71,7 @@ nav {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1120px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -79,7 +79,7 @@ nav {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1120px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
     position: absolute;
@@ -92,8 +92,6 @@ nav {
     text-align: left;
   }
 }
-
-
 
  @media screen and (max-width: 540px) {
   .topnav a {display: none;}
@@ -114,8 +112,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {

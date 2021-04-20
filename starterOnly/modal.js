@@ -177,6 +177,11 @@ function validateForm(){
     message.classList.add("message-validation");
     message.innerText = "Merci ! Votre réservation a été reçue";
     modal.appendChild(message);
+    let btnCloseModal = document.createElement("button");
+    btnCloseModal.classList.add("btn-submit");
+    btnCloseModal.innerText = "Fermer";
+    btnCloseModal.addEventListener("click",closeModal);
+    modal.appendChild(btnCloseModal);
   }
 }
 
