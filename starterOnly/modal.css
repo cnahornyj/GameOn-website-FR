@@ -14,7 +14,6 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -35,9 +34,13 @@ img {
   margin: 3.5%;
 }
 .header-logo {
-    float: left;
+  float: left;
 }
-.main-navbar {
+.header-logo > img {
+  width: auto;
+  height: auto;
+}
+nav {
     float: right;
 }
 .topnav a {
@@ -199,10 +202,7 @@ input {
   padding: 8px;
   border: 0.8px solid #ccc;
   outline: none;
-}
-.text-control {
   margin: 0;
-  padding: 8px;
   width: 100%;
   border-radius: 8px;
   font-size: 20px;
@@ -454,6 +454,22 @@ input[data-error]::after {
   margin: 0;
   margin-top: 59px;
 }
+.input-error{
+  border: 2px solid red;
+  background-color: #efd1cb;
+}
+.input-validate{
+  border: 2px solid #73e5a1;
+}
+.message-error{
+  color: red;
+  font-size: 60%;
+}
+.message-validation{
+  margin: 50% 0 50% 0;
+  text-align: center;
+  font-size: 150%;
+}
 .hero-img {
   grid-column: span 8;
 }
@@ -526,4 +542,3 @@ footer {
     opacity: 1;
   }
 }
-
