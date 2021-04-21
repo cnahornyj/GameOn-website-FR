@@ -37,23 +37,6 @@ let checkMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-
 // Fonctions de vérification des différents inputs saisis par l'utilisateur
 
 /*
-function validateFirstName() {
-  let firstname = form.elements["firstname"];
-  let error = document.getElementById("error-firstname");
-  if (checkString.test(firstname.value) === false) {
-    firstname.classList.add("input-error");
-    error.innerText =
-      "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du prénom";
-    return false;
-  } else {
-    firstname.classList.remove("input-error");
-    firstname.classList.add("input-validate");
-    error.innerText = "";
-    return true;
-  }
-}
-*/
-
 function validateFullName(){
   let fullname = document.querySelectorAll("input[type=text]");
   console.log(fullname);
@@ -79,37 +62,54 @@ function validateFullName(){
     return true;
   }
 }
-
+*/
 /*
-  if (fullname[i].value === "") {
-    fullname[i].classList.add("input-error");
-    error.innerText = "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du prénom et du nom";
-    return false;
-  } else {
-    fullname[i].classList.remove("input-error");
-    fullname[i].classList.add("input-validate");
-    error.innerText = "";
-    return true;
-  }
+function validateFullName(){
+  let fullname = document.querySelectorAll("input[type=text]");
+  let error = document.getElementById("error-fullname");
+
+  //console.log(fullname);
+  fullname.forEach(function(item) {
+    console.log(item);
+    if(checkString.test(item.value) === false || item.value === ""){
+      //fullname.classList.add("input-error");
+      error.innerText = "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du prénom/nom";
+      console.log("Pas correct");
+      return false;
+    } else {
+      //fullname.classList.remove("input-error");
+      //fullname.classList.add("input-validate");
+      error.innerText = "";
+      console.log("Correct");
+      return true;
+    }
+  });
+}
 */
 
-/*
-function validateLastName() {
-  let lastname = form.elements["lastname"];
-  let error = document.getElementById("error-lastname");
-  if (checkString.test(lastname.value) === false) {
-    lastname.classList.add("input-error");
-    error.innerText =
-      "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du nom";
+function validateFullName(){
+  let fullname = document.querySelectorAll("input[type=text]");
+  let array = Array.from(fullname);
+  let error = document.getElementById("error-fullname");
+  console.log(array);
+  const itsAMatch = (array) => checkString.test(array.value) === true;
+  let result = array.every(itsAMatch);
+  console.log(result);
+  if (!result){
+    for(let i = 0; i < array.length; i++){
+      fullname[i].classList.add("input-error");
+      error.innerText = "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du prénom/nom";
+    }
     return false;
   } else {
-    lastname.classList.remove("input-error");
-    lastname.classList.add("input-validate");
-    error.innerText = "";
+    for(let i = 0; i < array.length; i++){
+      fullname[i].classList.remove("input-error");
+      fullname[i].classList.add("input-validate");
+      error.innerText = "";
+    }
     return true;
   }
 }
-*/
 
 //
 function validateEmail() {
