@@ -64,9 +64,7 @@
                   type="text"
                   id="firstname"
                   name="firstname"
-                  minlength="2"
-                  onchange="validateFirstName()"
-                  required
+                  onchange="validateFullName()"
                 />
                 <span id="error-firstname" class="message-error"></span>
               </div>
@@ -76,8 +74,7 @@
                   type="text"
                   id="lastname"
                   name="lastname"
-                  onchange="validateLastName()"
-                  required
+                  onchange="validateFullName()"
                 />
                 <span id="error-lastname" class="message-error"></span>
               </div>
@@ -88,7 +85,6 @@
                   id="email"
                   name="email"
                   onchange="validateEmail()"
-                  required
                 />
                 <span id="error-mail" class="message-error"></span>
               </div>
@@ -99,7 +95,6 @@
                   id="birthdate"
                   name="birthdate"
                   onchange="validateDate()"
-                  required
                 />
                 <span id="error-date" class="message-error"></span>
               </div>
@@ -114,8 +109,9 @@
                   name="quantity"
                   min="0"
                   max="99"
-                  required
+                  onchange="validateQuantity()"
                 />
+                <span id="error-quantity" class="message-error"></span>
               </div>
               <label>Quelles villes ?</label>
               <div class="formData">
@@ -201,7 +197,7 @@
                   onchange="validateTerms()"
                   checked
                 />
-                <label class="checkbox2-label" for="terms" required>
+                <label class="checkbox2-label" fo>
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation. </label
                 ><br />
