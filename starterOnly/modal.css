@@ -104,7 +104,10 @@ nav {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
+    margin-top: 5px;
+  }
+  .hero-text{
+    width: min-content !important;
   }
 }
 
@@ -471,6 +474,7 @@ input[data-error]::after {
   margin: 50% 0 50% 0;
   text-align: center;
   font-size: 150%;
+  color:#73e5a1;
 }
 .hero-img {
   grid-column: span 8;
@@ -513,7 +517,7 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 200%;
     white-space: normal;
   }
   .hero-text {
