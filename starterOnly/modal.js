@@ -36,7 +36,7 @@ let checkMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-
 
 // Fonctions de vérification des différents inputs saisis par l'utilisateur
 
-//
+/*
 function validateFirstName() {
   let firstname = form.elements["firstname"];
   let error = document.getElementById("error-firstname");
@@ -52,8 +52,48 @@ function validateFirstName() {
     return true;
   }
 }
+*/
 
-//
+function validateFullName(){
+  let fullname = document.querySelectorAll("input[type=text]");
+  console.log(fullname);
+  if(checkString.test(fullname[0].value) === false){
+    fullname[0].classList.add("input-error");
+    let error = document.getElementById("error-firstname");
+    error.innerText = "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du prénom";
+    return false;
+  } else if (checkString.test(fullname[1].value) === false){
+    fullname[1].classList.add("input-error");
+    let error = document.getElementById("error-lastname");
+    error.innerText = "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du nom";
+    return false;
+  } else {
+    let error = document.getElementById("error-firstname");
+    fullname[0].classList.remove("input-error");
+    fullname[0].classList.add("input-validate");
+    error.innerText = "";
+    let error1 = document.getElementById("error-lastname");
+    fullname[1].classList.remove("input-error");
+    fullname[1].classList.add("input-validate");
+    error1.innerText = "";
+    return true;
+  }
+}
+
+/*
+  if (fullname[i].value === "") {
+    fullname[i].classList.add("input-error");
+    error.innerText = "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du prénom et du nom";
+    return false;
+  } else {
+    fullname[i].classList.remove("input-error");
+    fullname[i].classList.add("input-validate");
+    error.innerText = "";
+    return true;
+  }
+*/
+
+/*
 function validateLastName() {
   let lastname = form.elements["lastname"];
   let error = document.getElementById("error-lastname");
@@ -69,6 +109,7 @@ function validateLastName() {
     return true;
   }
 }
+*/
 
 //
 function validateEmail() {
@@ -112,7 +153,7 @@ function validateDate() {
   /* Si le nbr de millisecondes depuis le 01/01/1970 de la date entrée par l'utilisateur est
   supérieur au nbr de millisecondes depuis le 01/01/1970 de la date du jour alors message d'erreur */
 
-  if (numberOfMsUserDate > numberOfMsToday) {
+  if (birthdate === "" || numberOfMsUserDate > numberOfMsToday) {
     input.classList.add("input-error");
     error.innerText = "Vous devez entrer votre date de naissance";
     return false;
@@ -120,6 +161,23 @@ function validateDate() {
     input.classList.remove("input-error");
     input.classList.add("input-validate");
     input.style.backgroundColor = "#E8F0FE";
+    error.innerText = "";
+    return true;
+  }
+}
+
+function validateQuantity(){
+  let quantity = form.elements["quantity"];
+  let error = document.getElementById("error-quantity");
+  if (quantity.value === ""){
+    quantity.classList.add("input-error");
+    quantity.classList.remove("input-validate");
+    error.innerText = "Vous devez entrer un nombre de tournois";
+    return false;
+  } else {
+    quantity.classList.remove("input-error");
+    quantity.classList.add("input-validate");
+    quantity.style.backgroundColor = "#E8F0FE";
     error.innerText = "";
     return true;
   }
@@ -160,13 +218,14 @@ function validateTerms() {
 return true si NON blocage de l'envoi du formulaire et si OUI alors le formulaire est envoyé et un message de 
 réussite est affiché */
 function validateForm(event) {
-  if (validateFirstName() === false) {
-    return false;
-  } else if (validateLastName() === false) {
+
+  if (validateFullName() === false) {
     return false;
   } else if (validateEmail() === false) {
     return false;
   } else if (validateDate() === false) {
+    return false;
+  } else if (validateQuantity() === false) {
     return false;
   } else if (validateCity() === false) {
     return false;
