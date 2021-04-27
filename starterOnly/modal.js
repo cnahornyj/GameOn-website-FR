@@ -36,76 +36,33 @@ let checkMail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-
 
 // Fonctions de vérification des différents inputs saisis par l'utilisateur
 
-/*
 function validateFullName(){
   let fullname = document.querySelectorAll("input[type=text]");
+  // Conversion nodeList en array js car méthode every ne fonctionne pas sur nodeList
   console.log(fullname);
-  if(checkString.test(fullname[0].value) === false){
-    fullname[0].classList.add("input-error");
-    let error = document.getElementById("error-firstname");
-    error.innerText = "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du prénom";
-    return false;
-  } else if (checkString.test(fullname[1].value) === false){
-    fullname[1].classList.add("input-error");
-    let error = document.getElementById("error-lastname");
-    error.innerText = "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du nom";
-    return false;
-  } else {
-    let error = document.getElementById("error-firstname");
-    fullname[0].classList.remove("input-error");
-    fullname[0].classList.add("input-validate");
-    error.innerText = "";
-    let error1 = document.getElementById("error-lastname");
-    fullname[1].classList.remove("input-error");
-    fullname[1].classList.add("input-validate");
-    error1.innerText = "";
-    return true;
-  }
-}
-*/
-/*
-function validateFullName(){
-  let fullname = document.querySelectorAll("input[type=text]");
-  let error = document.getElementById("error-fullname");
-
-  //console.log(fullname);
-  fullname.forEach(function(item) {
-    console.log(item);
-    if(checkString.test(item.value) === false || item.value === ""){
-      //fullname.classList.add("input-error");
-      error.innerText = "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du prénom/nom";
-      console.log("Pas correct");
-      return false;
-    } else {
-      //fullname.classList.remove("input-error");
-      //fullname.classList.add("input-validate");
-      error.innerText = "";
-      console.log("Correct");
-      return true;
-    }
-  });
-}
-*/
-
-function validateFullName(){
-  let fullname = document.querySelectorAll("input[type=text]");
   let array = Array.from(fullname);
-  let error = document.getElementById("error-fullname");
+  let error = document.getElementById("error-firstname");
+  let error1 = document.getElementById("error-lastname");
   console.log(array);
+  // Méthode every qui return true si tous les items.value du tableau checkString évaluée à true
   const itsAMatch = (array) => checkString.test(array.value) === true;
   let result = array.every(itsAMatch);
   console.log(result);
+  // Si result === false alors
   if (!result){
     for(let i = 0; i < array.length; i++){
       fullname[i].classList.add("input-error");
-      error.innerText = "Veuillez entrer 2 caractères alphabétiques ou plus pour le champ du prénom/nom";
+      error.innerText = "Veuillez entrer au moins 2 caractères alphabétiques pour le champ du prénom";
+      error1.innerText = "Veuillez entrer au moins 2 caractères alphabétiques pour le champ du nom";
     }
     return false;
+  // Si result === true alors
   } else {
     for(let i = 0; i < array.length; i++){
       fullname[i].classList.remove("input-error");
       fullname[i].classList.add("input-validate");
       error.innerText = "";
+      error1.innerText = "";
     }
     return true;
   }
@@ -117,7 +74,7 @@ function validateEmail() {
   let error = document.getElementById("error-mail");
   if (checkMail.test(email.value) === false) {
     email.classList.add("input-error");
-    error.innerText = "Saississez un email valide";
+    error.innerText = "Saississez un email valide au format xxx@yyy.zzz";
     return false;
   } else {
     email.classList.remove("input-error");
@@ -150,13 +107,16 @@ function validateDate() {
   // console.log(numberOfMsToday);
 
   // 18 années = 5,676e+11millisecondes
-  /* Si le nbr de millisecondes depuis le 01/01/1970 de la date entrée par l'utilisateur est
+  /* Si value non renseignée ou si le nbr de millisecondes depuis le 01/01/1970 de la date entrée par l'utilisateur est
   supérieur au nbr de millisecondes depuis le 01/01/1970 de la date du jour alors message d'erreur */
 
-  if (birthdate === "" || numberOfMsUserDate > numberOfMsToday) {
+  if (birthdate === "") {
     input.classList.add("input-error");
-    error.innerText = "Vous devez entrer votre date de naissance";
+    error.innerText = "Vous devez saisir une date de naissance";
     return false;
+  } else if (numberOfMsUserDate > numberOfMsToday) {
+    input.classList.add("input-error");
+    error.innerText = "Vous ne pouvez pas être né dans le futur, saisissez une date de naissance antérieure à la date du jour";
   } else {
     input.classList.remove("input-error");
     input.classList.add("input-validate");
@@ -169,10 +129,10 @@ function validateDate() {
 function validateQuantity(){
   let quantity = form.elements["quantity"];
   let error = document.getElementById("error-quantity");
-  if (quantity.value === ""){
+  if (quantity.value === "" || quantity.value < 0){
     quantity.classList.add("input-error");
     quantity.classList.remove("input-validate");
-    error.innerText = "Vous devez entrer un nombre de tournois";
+    error.innerText = "Vous devez entrer un nombre nul ou positif de tournois";
     return false;
   } else {
     quantity.classList.remove("input-error");
@@ -195,7 +155,7 @@ function validateCity() {
     }
   }
   // Si on arrive ici, c'est qu'aucune case n'est cochée alors message d'erreur
-  error.innerText = "Vous devez choisir une option";
+  error.innerText = "Vous devez choisir une ville";
   return false;
 }
 
