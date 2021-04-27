@@ -66,6 +66,7 @@
                   name="firstname"
                   onchange="validateFullName()"
                 />
+              <span id="error-firstname" class="message-error"></span>
               </div>
               <div class="formData">
                 <label for="lastname">Nom</label><br />
@@ -75,7 +76,7 @@
                   name="lastname"
                   onchange="validateFullName()"
                 />
-                <span id="error-fullname" class="message-error"></span>
+                <span id="error-lastname" class="message-error"></span>
               </div>
               <div class="formData">
                 <label for="email">E-mail</label><br />
@@ -106,8 +107,6 @@
                   type="number"
                   id="quantity"
                   name="quantity"
-                  min="0"
-                  max="99"
                   onchange="validateQuantity()"
                 />
                 <span id="error-quantity" class="message-error"></span>
